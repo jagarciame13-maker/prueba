@@ -1,0 +1,39 @@
+name: MiPrimerPipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-test-report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Compilación simulada
+        run: echo "Compilando el proyecto..."
+
+      - name: Pruebas simuladas
+        run: echo "Ejecutando pruebas automatizadas..."
+
+      - name: Generar reporte HTML
+        run: |
+          echo "<html>
+          <head><title>Reporte GitHub Actions</title></head>
+          <body style='font-family:Arial; text-align:center;'>
+            <h1 style='color:blue;'>Pipeline ejecutado exitosamente</h1>
+            <p>Build completado correctamente</p>
+            <p>Pruebas ejecutadas sin errores</p>
+            <p><b>Este es tu primer reporte automático en GitHub Actions</b></p>
+          </body>
+          </html>" > reporte.html
+
+      - name: Guardar reporte como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: reporte-html
+          path: reporte.html
+
